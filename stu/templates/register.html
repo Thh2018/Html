@@ -14,7 +14,7 @@
 {#                $('#unameSpan').css('color','red');#}
             }else{
                 // 3.判断是否存在于表中，result接收views的结果
-                $.get('/stu/isExist/',{'uname':uname},function (result) {
+                $.get('/isExist/',{'uname':uname},function (result) {
                     r = result.flag;
                 // 4.根据服务器端views的响应信息，进行页面更新
                     if(r){
@@ -47,10 +47,8 @@
         }
         body{
             background: black;
-{#            background-color: skyblue;#}
         }
         .box1{
-{#            background: skyblue;#}
             width: 350px;
             height: 200px;
             margin: auto;
@@ -69,7 +67,6 @@
 
         }
         #dl{
-{#            background: url("/static/img_zc2.png")no-repeat center;#}
             border: 0;
             background: skyblue;
             color: white;
@@ -86,7 +83,7 @@
 <body>
     <div class="box2">
         <div class="box1">
-            <form action="/stu/register/" method="post">
+            <form action="/register/" method="post">
                 {% csrf_token %}
                 <h2 align="center" style="color: white">&emsp;新用户注册&emsp;</h2><br><br>
 {#                <h3 align="center" style="color: white"></h3><br>#}
@@ -103,7 +100,7 @@
                     <input id="dl" type="submit" value="注册" onclick="postPwd()" >
                 </p><br>
                 <p align="right">
-                    <a href="/stu/login/"  style="color: white ;font-size: small">已有账号，直接登录</a>
+                    <a href="/login/"  style="color: white ;font-size: small">已有账号，直接登录</a>
                 </p>
 
             </form>
