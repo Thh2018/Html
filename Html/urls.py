@@ -1,3 +1,4 @@
+#coding=utf-8
 """Html URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
@@ -21,5 +22,9 @@ urlpatterns = [
     url(r'^main/',include('Customer.urls')),
     url(r'^main/',include('Staff.urls')),
     url(r'^main/',include('Add.urls')),
+    # 管理员相关
+    url(r'^users/', include('admin_users.urls')),
+    # 员工相关
+    url(r'^staff/', include('staff_.urls'))
 
 ]
