@@ -22,5 +22,6 @@ urlpatterns = [
     url(r'^main/',include('Staff.urls')),
     url(r'^main/',include('Add.urls')),
     url(r'^', include('stu.urls')),
+    url(r'^main/',include('employee.urls'))#新增员工信息
 
 ]
