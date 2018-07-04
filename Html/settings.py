@@ -40,6 +40,9 @@ INSTALLED_APPS = [
     'Add',
     'Customer',
     'Staff',
+    'admin_users',
+    'staff_',
+    'all_models',
 ]
 
 MIDDLEWARE = [
