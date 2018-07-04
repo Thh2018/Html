@@ -1,12 +1,6 @@
-
-
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<base href="http://localhost:8080/crm/">
-
 		<title>My JSP 'customerCondition_list.jsp' starting page</title>
 
 		<meta http-equiv="pragma" content="no-cache">
@@ -45,6 +39,7 @@ body {
 A:hover {
 	COLOR: #f60; TEXT-DECORATION: underline
 }
+
 
 -->
 </style>
@@ -99,16 +94,19 @@ for(i=0;i<cs.length;i++){
 </script>
 <script type="text/javascript">
 	function add(){
-			window.location="http://localhost:8080/crm/view/customer/customer_source_add.html";
+			window.location="/main/customer_source_add.html";
 		}
-
+    function query() {
+            window.location="/main/customer_source_list.html";
+    }
 </script>
 </head>
 
 	<body>
 
 
-	<form action="http://localhost:8080/crm/servlet/CustomerSourceQueryServlet"  method="post">
+	<form action="/main/customer_source_list.html/"  method="post">
+    {% csrf_token %}
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td height="30" background="/static/tab_05.gif">
@@ -120,14 +118,21 @@ for(i=0;i<cs.length;i++){
 							</td>
 							<td>
 								<table width="100%" border="0" cellspacing="0" cellpadding="0">
+
+
 									<tr>
+
 										<td class="STYLE4" align="center">
 											&nbsp;&nbsp;请输入客户来源名称：
-											<input type="text" name="SourceName" style="width: 290px" />
+											<input type="text" name="{{ csname }}" onclick="query()" style="width: 290px" />
 										</td>
+
 										<td class="STYLE4">
+
+
+
 											&nbsp;&nbsp;
-											<input type="submit" value="查询" style="width: 50px" />
+											<input type="submit" value="查询"   style="width: 50px" />
 										</td>
 										<td class="STYLE4">
 											&nbsp;&nbsp;
@@ -159,9 +164,11 @@ for(i=0;i<cs.length;i++){
 									bgcolor="b5d6e6" onmouseover="changeto()"
 									onmouseout="changeback()">
 									<tr>
-										<td width="5%"
+
+
+										<td width="3%"
 											background="/static/bg2.gif"
-											bgcolor="#FFFFFF" style="width: 3%; height: 22px;">
+											bgcolor="#FFFFFF" style="width: 5%; height: 22px;">
 											<div align="center">
 												<span class="STYLE1">序号</span>
 											</div>
@@ -171,7 +178,7 @@ for(i=0;i<cs.length;i++){
 											<div align="center">
 												<span class="STYLE1">客户来源</span>
 											</div>
-
+										</td>
 										<td      width="10%"
 											background="/static/bg2.gif"
 											bgcolor="#FFFFFF" class="STYLE1"
@@ -182,83 +189,37 @@ for(i=0;i<cs.length;i++){
 										</td>
 									</tr>
 
-
+									{% for sl in sourcelist %}
 									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
+
+                                            <td height="20" bgcolor="#FFFFFF" style="width: 3%">
 											<div align="center" class="STYLE1">
 												<div align="center">
-													1
+													{{ forloop.counter }}
 												</div>
 											</div>
 										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">自己上门</span>
+                                        <td height="20" bgcolor="#FFFFFF" style="width: 4%">                                                <div align="center">
+
+												<span class="STYLE1">{{ sl.source_name }}</span>
 											</div>
-										</td>
+                                        </td>
 										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
 											<div align="center">
 												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="http://localhost:8080/crm/servlet/CustomerSourceDeleteServlet?sourceId=1">删除</a>
+														width="16" height="16" /><a href="/main/customer_source_list.html/{{ sl.source_id }}">删除</a>
 												</span>
 											</div>
 										</td>
+
+
 									</tr>
-
-
-									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
-											<div align="center" class="STYLE1">
-												<div align="center">
-													2
-												</div>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">朋友推荐</span>
-											</div>
-										</td>
-										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
-											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="http://localhost:8080/crm/servlet/CustomerSourceDeleteServlet?sourceId=2">删除</a>
-												</span>
-											</div>
-										</td>
-									</tr>
-
-
-									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
-											<div align="center" class="STYLE1">
-												<div align="center">
-													3
-												</div>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">百度网</span>
-											</div>
-										</td>
-										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
-											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="http://localhost:8080/crm/servlet/CustomerSourceDeleteServlet?sourceId=3">删除</a>
-												</span>
-											</div>
-										</td>
-									</tr>
-
+								{% endfor %}
 								</table>
 							</td>
 							<td width="8"
 								background="/static/tab_15.gif">
-								&nbsp;
+								&nbsp;	&nbsp;
 							</td>
 						</tr>
 					</table>

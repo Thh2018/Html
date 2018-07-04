@@ -1,12 +1,6 @@
-
-
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<base href="http://localhost:8080/crm/">
-
 		<title>My JSP 'customerCondition_list.jsp' starting page</title>
 
 		<meta http-equiv="pragma" content="no-cache">
@@ -98,17 +92,16 @@ for(i=0;i<cs.length;i++){
 }
 </script>
 <script type="text/javascript">
-	function add(){
-			window.location="http://localhost:8080/crm/view/customer/customer_type_add.html";
+	function add(){  
+			window.location.href="/main/customer_type_add.html";
 		}
-
 </script>
 </head>
 
 	<body>
 
-
-	<form action="http://localhost:8080/crm/servlet/CustomerTypeQueryServlet"  method="post">
+	<form action=""  method="post">
+        {% csrf_token %}
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td height="30" background="/static/tab_05.gif">
@@ -181,108 +174,35 @@ for(i=0;i<cs.length;i++){
 											</div>
 										</td>
 									</tr>
-
-
+                                    {% for ctype in customertype %}
 									<tr>
 										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
 											<div align="center" class="STYLE1">
 												<div align="center">
-													1
+													{{ forloop.counter }}
 												</div>
 											</div>
 										</td>
 										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
 											<div align="center">
-												<span class="STYLE1">客户</span>
+												<span class="STYLE1">{{ ctype.type_name }}</span>
 											</div>
 										</td>
 										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
 											<div align="center">
 												<span class="STYLE4"><img src="/static/del.gif"
 														width="16" height="16" /><a
-													href="javascript:void(0)">删除</a>
+													href="/main/customer_type_list.html/{{ ctype.type_id }}">删除</a>
 												</span>
 											</div>
 										</td>
 									</tr>
-
-
-									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
-											<div align="center" class="STYLE1">
-												<div align="center">
-													2
-												</div>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">合作伙伴</span>
-											</div>
-										</td>
-										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
-											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="javascript:void(0)">删除</a>
-												</span>
-											</div>
-										</td>
-									</tr>
-
-
-									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
-											<div align="center" class="STYLE1">
-												<div align="center">
-													3
-												</div>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">供应商</span>
-											</div>
-										</td>
-										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
-											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="javascript:void(0)">删除</a>
-												</span>
-											</div>
-										</td>
-									</tr>
-
-
-									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
-											<div align="center" class="STYLE1">
-												<div align="center">
-													4
-												</div>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">合作伙伴</span>
-											</div>
-										</td>
-										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
-											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="javascript:void(0)">删除</a>
-												</span>
-											</div>
-										</td>
-									</tr>
-
+							{% endfor customertype%}
 								</table>
 							</td>
 							<td width="8"
 								background="/static/tab_15.gif">
-								&nbsp;
+								&nbsp;	&nbsp;
 							</td>
 						</tr>
 					</table>
@@ -324,10 +244,9 @@ for(i=0;i<cs.length;i++){
 															width="37" height="15" />
 													</td>
 													<td width="100">
-														<div align="center">
-															<span class="STYLE1">转到第 <input name="textfield"
-																	type="text" size="4"
-																	style="height: 12px; width: 20px; border: 1px solid #999999;" />
+														<div align="center"><span class="STYLE1">转到第 <input name="textfield"
+														     type="text" size="4"
+															 style="height: 12px; width: 20px; border: 1px solid #999999;" />
 																页 </span>
 														</div>
 													</td>

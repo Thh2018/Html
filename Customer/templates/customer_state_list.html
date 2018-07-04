@@ -1,11 +1,7 @@
-
-
-
-
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
 	<head>
-		<base href="http://localhost:8080/crm/">
+
 
 		<title>My JSP 'customerCondition_list.jsp' starting page</title>
 
@@ -45,11 +41,9 @@ body {
 A:hover {
 	COLOR: #f60; TEXT-DECORATION: underline
 }
-
 -->
 </style>
-
-		<script>
+        <script>
 var  highlightcolor='#c1ebff';
 //此处clickcolor只能用win系统颜色代码才能成功,如果用#xxxxxx的代码就不行,还没搞清楚为什么:(
 var  clickcolor='#51b2f6';
@@ -98,17 +92,17 @@ for(i=0;i<cs.length;i++){
 }
 </script>
 <script type="text/javascript">
-	function add(){
-			window.location="http://localhost:8080/crm/view/customer/customer_state_add.html";
+	function add(){  
+			window.location.href="/main/customer_state_add.html";
 		}
 
 </script>
 </head>
 
 	<body>
-
-
-	<form action="http://localhost:8080/crm/servlet/CustomerConditionQueryServlet"  method="post">
+	
+	
+	<form action="/customer_state_list.html"  method="post">
 		<table width="100%" border="0" cellspacing="0" cellpadding="0">
 			<tr>
 				<td height="30" background="/static/tab_05.gif">
@@ -131,7 +125,8 @@ for(i=0;i<cs.length;i++){
 										</td>
 										<td class="STYLE4">
 											&nbsp;&nbsp;
-											<input type="button" value="添加" onclick="add()" style="width: 50px" />
+											<input type="button" value="添加" onclick="add();" style="width: 50px" />
+{#                                            <a href="/main/customer_state_add.html" target="mainFrame"><button>添加</button></a>#}
 										</td>
 									</tr>
 								</table>
@@ -187,96 +182,41 @@ for(i=0;i<cs.length;i++){
 											</div>
 										</td>
 									</tr>
-
-
+                                    {% for cc in ccondition %}
 									<tr>
+
 										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
 											<div align="center" class="STYLE1">
 												<div align="center">
-													1
+													{{forloop.counter }}
 												</div>
 											</div>
 										</td>
+
 										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">潜在客户</span>
+
+                                            <div align="center">
+                                                <span class="STYLE1">{{ cc.condition_name }}</span>
 											</div>
+
+
+
 										</td>
 										<td height="20" bgcolor="#FFFFFF" style="width: 32%">
 											<div align="center">
-												<span class="STYLE1">可能成为客户的人</span>
+												<span class="STYLE1">{{ cc.condition_explain }}</span>
 											</div>
 										</td>
 										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
 											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="http://localhost:8080/crm/servlet/CustomerConditionDeleteServlet?conditionId=1">删除</a>
+												<span class="STYLE4"><img src="/static/del.gif"  width="16" height="16" /><a href="/main/customer_state_list.html/{{ cc.condition_id }}">删除</a>
 												</span>
 											</div>
 										</td>
 									</tr>
-
-
-									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
-											<div align="center" class="STYLE1">
-												<div align="center">
-													2
-												</div>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">意向客户</span>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 32%">
-											<div align="center">
-												<span class="STYLE1">有意愿车成为客户的人</span>
-											</div>
-										</td>
-										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
-											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="http://localhost:8080/crm/servlet/CustomerConditionDeleteServlet?conditionId=2">删除</a>
-												</span>
-											</div>
-										</td>
-									</tr>
-
-
-									<tr>
-										<td height="20" bgcolor="#FFFFFF" style="width: 3%">
-											<div align="center" class="STYLE1">
-												<div align="center">
-													3
-												</div>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 4%">
-											<div align="center">
-												<span class="STYLE1">交易客户</span>
-											</div>
-										</td>
-										<td height="20" bgcolor="#FFFFFF" style="width: 32%">
-											<div align="center">
-												<span class="STYLE1">正在交易的客户</span>
-											</div>
-										</td>
-										<td      height="20" bgcolor="#FFFFFF" style="width: 9%">
-											<div align="center">
-												<span class="STYLE4"><img src="/static/del.gif"
-														width="16" height="16" /><a
-													href="http://localhost:8080/crm/servlet/CustomerConditionDeleteServlet?conditionId=3">删除</a>
-												</span>
-											</div>
-										</td>
-									</tr>
-
+                                {% endfor ccondition%}
 								</table>
-							</td>
+							</td>	
 							<td width="8"
 								background="/static/tab_15.gif">
 								&nbsp;
@@ -285,7 +225,7 @@ for(i=0;i<cs.length;i++){
 					</table>
 				</td>
 			</tr>
-
+			
 			<tr>
 				<td height="35" background="/static/tab_19.gif">
 					<table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -321,8 +261,7 @@ for(i=0;i<cs.length;i++){
 															width="37" height="15" />
 													</td>
 													<td width="100">
-														<div align="center">
-															<span class="STYLE1">转到第 <input name="textfield"
+														<div align="center"><span class="STYLE1">转到第 <input name="textfield"
 																	type="text" size="4"
 																	style="height: 12px; width: 20px; border: 1px solid #999999;" />
 																页 </span>
