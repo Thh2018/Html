@@ -70,6 +70,16 @@ a {
 -->
 </style>
 
+
+{#        <script>#}
+{#            window.onLoad = function(){#}
+{#                 var u = window.opener.getData();#}
+{#                 console.log(u);#}
+{#            }#}
+{##}
+{##}
+{#        </script>#}
+
 	</head>
 
 
@@ -219,11 +229,11 @@ a {
 											<td width="20%" height="22">
 												&nbsp;
 											</td>
-											<td width="59%" valign="bottom">
+											<td width="70%" valign="bottom">
 												<div align="center" class="STYLE1">
-													当前用户：李四</div>
+													当前用户：{{ uname }}</div>
 											</td>
-											<td width="21%">
+											<td width="10%">
 												&nbsp;
 											</td>
 										</tr>
