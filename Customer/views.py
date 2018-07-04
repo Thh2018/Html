@@ -9,7 +9,8 @@ def index(request):
 
 
 def top_view(request):
-    return render(request, 'top.html')
+    uname=request.GET.get('uname','')
+    return render(request, 'top.html',{'uname':uname})
 
 
 def left_view(request):

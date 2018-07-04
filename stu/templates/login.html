@@ -14,7 +14,7 @@
 {#                $('#unameSpan').css('color','red');#}
             }else{
                 // 3.判断是否存在于表中，result接收views的结果
-                $.get('/stu/isExist/',{'uname':uname},function (result) {
+                $.get('/isExist/',{'uname':uname},function (result) {
                     r = result.flag;
                 // 4.根据服务器端views的响应信息，进行页面更新
                     if(r){
@@ -35,9 +35,7 @@
             }else {
                 $('#pwdSpan').html('✔')
             }
-
         }
-
     </script>
     <style>
         *{
@@ -46,10 +44,8 @@
         }
         body{
             background: black;
-{#            background-color: skyblue;#}
         }
         .box1{
-{#            background: skyblue;#}
             width: 350px;
             height: 200px;
             margin: auto;
@@ -60,6 +56,7 @@
             bottom: 0;
         }
         .box2{
+{#            padding-top: 100px;#}
             width:1072px;
             height:671px;
             background:url("/static/2.jpg")no-repeat ;
@@ -68,7 +65,6 @@
 
         }
         #dl{
-{#            background: url("/static/3.png")no-repeat center;#}
             border: 0;
             background: skyblue;
             color:white;
@@ -84,10 +80,10 @@
 <body>
     <div class="box2">
         <div class="box1">
-            <form action="/stu/login/" method="post">
+            <form action="/login/" method="post">
                 {% csrf_token %}
                 <h2 align="center" style="color: white">&emsp;房地产客户管理系统&emsp;</h2><br>
-                <h3 align="center" style="color: white">▶登录◀</h3><br>
+                <h2 align="center" style="color: white">欢迎登录</h2><br>
 
                 <p align="center">
                    <label for="uname"><b style="color: white">用户：</b></label><input type="text" name="uname" id="uname" onblur="getName()" style="color: gray"  value="{{ uname }}">&emsp;<span id="unameSpan"></span>
@@ -99,10 +95,10 @@
                 </p>
                 <br>
                 <p align="center">
-                    <input id="dl" type="submit" value="登录" onclick="postPwd()" >
+                    <input id="dl" type="submit" value="登录" >
                 </p>
                 <p align="right">
-                    <a href="/stu/register/" style="color: white;font-size: small">新用户注册</a>
+                    <a href="/register/" style="color: white;font-size: small">注册新用户</a>
                 </p>
             </form>
         </div>
