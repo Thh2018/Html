@@ -21,6 +21,6 @@ urlpatterns = [
     url(r'^main/',include('Customer.urls')),
     url(r'^main/',include('Staff.urls')),
     url(r'^main/',include('Add.urls')),
-    url(r'^', include('stu.urls')),
+    url(r'^stu/', include('stu.urls')),
 
 ]

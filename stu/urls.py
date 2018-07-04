@@ -6,5 +6,5 @@ urlpatterns = [
     url(r'^register/',views.register_view),
     url(r'^login/$', views.login_view),
     url(r'^isExist/',views.isExist_view),
-    # url(r'^main/',views.login_view),
+    url(r'^mybase/',views.base_view),
 ]

@@ -6,7 +6,7 @@ from django.db import models
 # Create your models here.
 
 class Employee(models.Model):
-    ename = models.CharField(max_length=30)
+    ename = models.CharField(max_length=30,unique=True)
     epwd = models.CharField(max_length=50)
 
     def __unicode__(self):

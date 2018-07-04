@@ -4,6 +4,42 @@
     <meta charset="UTF-8">
     <title>房地产客户管理系统</title>
     <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script>
+                function getName() {
+            // 1.获取用户输入框内容,，并定义uname
+            var uname = $('#uname').val();
+            // 2.判断非空
+            if(uname.length==0){
+                $('#unameSpan').html('* 不能为空');
+{#                $('#unameSpan').css('color','red');#}
+            }else{
+                // 3.判断是否存在于表中，result接收views的结果
+                $.get('/stu/isExist/',{'uname':uname},function (result) {
+                    r = result.flag;
+                // 4.根据服务器端views的响应信息，进行页面更新
+                    if(r){
+                        $('#unameSpan').html('用户已存在');
+                        $('#unameSpan').css('color','white')
+                    }else{
+                        $('#unameSpan').html('✔');
+                        $('#unameSpan').css('color','white')
+                    }
+                })
+            }
+        }
+        function getPwd() {
+            // 获取输入框内容，并定义
+            var pwd = $('#pwd').val();
+            if(pwd.length==0){
+                $('#pwdSpan').html('* 不能为空')
+            }else {
+                $('#pwdSpan').html('✔');
+                $('#pwdSpan').css('color','white')
+            }
+
+        }
+    </script>
+
     <style>
         *{
             margin: 0;
@@ -33,9 +69,16 @@
 
         }
         #dl{
-            background: url("/static/img_zc2.png")no-repeat center;
+{#            background: url("/static/img_zc2.png")no-repeat center;#}
+            border: 0;
+            background: skyblue;
+            color: white;
             width:60px;
             height:27px;
+        }
+        span{
+            font-size: xx-small;
+            color: darkgray;
         }
     </style>
 
@@ -43,23 +86,26 @@
 <body>
     <div class="box2">
         <div class="box1">
-            <form action="/register/" method="post">
+            <form action="/stu/register/" method="post">
                 {% csrf_token %}
-                <h2 align="center" style="color: white">❦&emsp;房地产客户管理系统&emsp;❦</h2><br>
-                <h3 align="center" style="color: white">▶注册◀</h3><br>
+                <h2 align="center" style="color: white">&emsp;新用户注册&emsp;</h2><br><br>
+{#                <h3 align="center" style="color: white"></h3><br>#}
 
                 <p align="center">
-                   <label for="uname"><b style="color: white">用户：</b></label><input type="text" name="uname" id="uname" onblur="getName()"  >&emsp;<span id="unameSpan"></span>
+                   <label for="uname"><b style="color: white">用户：</b></label><input type="text" name="uname" id="uname" onblur="getName()">&emsp;<span id="unameSpan"></span>
                 </p><br>
 
                 <p align="center">
-                    <label for="pwd"><b style="color: white">密码：</b></label><input type="password" name="pwd" id="pwd">&emsp;<span id="pwdSpan"></span>
+                    <label for="pwd"><b style="color: white">密码：</b></label><input type="password" name="pwd" id="pwd" onblur="getPwd()">&emsp;<span id="pwdSpan"></span>
                 </p>
                 <br>
                 <p align="center">
-                    <input id="dl" type="submit" value="" onclick="postPwd()" >
-                    <a href="/login/" style="color: white">登录</a>
+                    <input id="dl" type="submit" value="注册" onclick="postPwd()" >
+                </p><br>
+                <p align="right">
+                    <a href="/stu/login/"  style="color: white ;font-size: small">已有账号，直接登录</a>
                 </p>
+
             </form>
         </div>
     </div>

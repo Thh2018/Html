@@ -11,15 +11,15 @@
             // 2.判断非空
             if(uname.length==0){
                 $('#unameSpan').html('* 不能为空');
-                $('#unameSpan').css('color','red');
+{#                $('#unameSpan').css('color','red');#}
             }else{
                 // 3.判断是否存在于表中，result接收views的结果
-                $.get('/isExist/',{'uname':uname},function (result) {
+                $.get('/stu/isExist/',{'uname':uname},function (result) {
                     r = result.flag;
                 // 4.根据服务器端views的响应信息，进行页面更新
                     if(r){
                         $('#unameSpan').html('✔');
-                        $('#unameSpan').css('color','green')
+                        $('#unameSpan').css('color','white')
                     }else{
                         $('#unameSpan').html('用户不存在');
                         $('#unameSpan').css('color','red')
@@ -27,25 +27,17 @@
                 })
             }
         }
-{% comment %}        function postPwd() {
-            var pwd = $("#pwd").val();
+        function getPwd() {
+            // 获取输入框内容，并定义
+            var pwd = $('#pwd').val();
             if(pwd.length==0){
-                $('#pwdSpan').html('* 请输入密码');
-                $('#pwdSpan').css('color',red);
+                $('#pwdSpan').html('请填写密码')
             }else {
-                var token = $('input[name="csrfmiddlewaretoken"]').val();
-                $.post('/login/',{'pwd':pwd,'csrfmiddlewaretoken':token},function (result1) {
-                    alert(result1);
-                    if(r){
-                        $('#pwdSpan').html('✔');
-                        $('#pwdSpan').css('color','green')
-                    }else {
-                        $('#pwdSpan').html('密码错误');
-                        $('#pwdSpan').css('color','red')
-                    }
-                })
+                $('#pwdSpan').html('✔')
             }
-        }{% endcomment %}
+
+        }
+
     </script>
     <style>
         *{
@@ -76,31 +68,41 @@
 
         }
         #dl{
-            background: url("/static/3.png")no-repeat center;
+{#            background: url("/static/3.png")no-repeat center;#}
+            border: 0;
+            background: skyblue;
+            color:white;
             width:60px;
             height:27px;
+        }
+        span{
+            font-size: xx-small;
+            color: darkgray;
         }
     </style>
 </head>
 <body>
     <div class="box2">
         <div class="box1">
-            <form action="/login/" method="post">
+            <form action="/stu/login/" method="post">
                 {% csrf_token %}
-                <h2 align="center" style="color: white">❦&emsp;房地产客户管理系统&emsp;❦</h2><br>
+                <h2 align="center" style="color: white">&emsp;房地产客户管理系统&emsp;</h2><br>
                 <h3 align="center" style="color: white">▶登录◀</h3><br>
 
                 <p align="center">
-                   <label for="uname"><b style="color: white">用户：</b></label><input type="text" name="uname" id="uname" onblur="getName()"  >&emsp;<span id="unameSpan"></span>
-                </p><br>
+                   <label for="uname"><b style="color: white">用户：</b></label><input type="text" name="uname" id="uname" onblur="getName()" style="color: gray"  value="{{ uname }}">&emsp;<span id="unameSpan"></span>
+                </p>
+                <br>
 
                 <p align="center">
-                    <label for="pwd"><b style="color: white">密码：</b></label><input type="password" name="pwd" id="pwd">&emsp;<span id="pwdSpan"></span>
+                    <label for="pwd"><b style="color: white">密码：</b></label><input type="password" name="pwd" id="pwd" onblur="getPwd()" style="color: gray" value="{{ pwd }}">&emsp;<span id="pwdSpan"></span>
                 </p>
                 <br>
                 <p align="center">
-                    <input id="dl" type="submit" value="" onclick="postPwd()" >
-                    <a href="/register/" style="color: white">注册</a>
+                    <input id="dl" type="submit" value="登录" onclick="postPwd()" >
+                </p>
+                <p align="right">
+                    <a href="/stu/register/" style="color: white;font-size: small">新用户注册</a>
                 </p>
             </form>
         </div>
